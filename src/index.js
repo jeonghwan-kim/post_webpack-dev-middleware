@@ -25,6 +25,12 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(device.capture());
 
+app.get('/api/greeting', (req, res) => {
+	setTimeout(()=> {
+		res.json({data: 'Hello world!'});
+	}, 200)
+})
+
 app.get('*', (req, res) => {
 	if (req.device.type === 'desktop') {
 		res.sendFile(path.resolve(__dirname, `../public/desktop.html`))
